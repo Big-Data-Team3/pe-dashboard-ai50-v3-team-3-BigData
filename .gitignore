@@ -32,6 +32,8 @@ env/
 *.log
 logs/
 react_logs/
+# Unignore the logs folder itself
+!logs/
 
 # Keep markdown logs inside logs/ folder (root-level)
 !logs/*.md
@@ -39,6 +41,7 @@ react_logs/
 # Ignore JSONL traces globally but keep the committed example
 *.jsonl
 !react_traces.jsonl
+
 
 # ============================================================
 # Environment / Credentials
