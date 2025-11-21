@@ -145,17 +145,6 @@ All tests passed ✔
 
 ---
 
-# 🚀 Live Deployment (Placeholders)
-
-| Component | Platform | URL |
-|-----------|----------|-----|
-| RAG API | App Engine | https://<placeholder> |
-| Structured API | App Engine | https://<placeholder> |
-| Streamlit RAG UI | Cloud Run | https://<placeholder> |
-| Streamlit Structured UI | Cloud Run | https://<placeholder> |
-
----
-
 # 👥 Team Contributions (Equal ≈ 33%)
 
 | Member | Contribution |
@@ -204,8 +193,7 @@ pe-dashboard-ai50-v3-team-3-BigData/
 # 🎥 Demo Video
 
 > **PLACEHOLDER - Add YouTube video link here**  
-Example: https://youtu.be/<video-id>
-
+Example: https://youtu.be/k8WT2PxUa0I
 ---
 
 # 📘 Documentation (Codelab PDF)
