@@ -1,0 +1,59 @@
+[
+  {
+    "node": "Planner",
+    "run_id": "6237dd83-3d51-4cb4-a592-4cfa493e2c6c",
+    "company_id": "anthropic",
+    "plan": {
+      "company_id": "anthropic",
+      "steps": [
+        "generate_structured_dashboard",
+        "generate_rag_dashboard",
+        "evaluate_dashboards",
+        "check_for_risks"
+      ]
+    }
+  },
+  {
+    "node": "DataGenerator",
+    "run_id": "6237dd83-3d51-4cb4-a592-4cfa493e2c6c",
+    "company_id": "anthropic",
+    "structured_preview": "# Structured Dashboard for anthropic\nStrong fundamentals, no incidents.",
+    "rag_preview": "# RAG Dashboard for anthropic\nPositive sentiment, no layoffs."
+  },
+  {
+    "node": "Evaluator",
+    "run_id": "6237dd83-3d51-4cb4-a592-4cfa493e2c6c",
+    "company_id": "anthropic",
+    "evaluation": {
+      "winner": "structured",
+      "scores": {
+        "rag": {
+          "factual": 2,
+          "schema": 2,
+          "provenance": 1,
+          "hallucination": 1,
+          "readability": 1
+        },
+        "structured": {
+          "factual": 3,
+          "schema": 2,
+          "provenance": 2,
+          "hallucination": 2,
+          "readability": 1
+        }
+      }
+    }
+  },
+  {
+    "node": "RiskDetector",
+    "run_id": "6237dd83-3d51-4cb4-a592-4cfa493e2c6c",
+    "company_id": "anthropic",
+    "branch": "HITL_REVIEW"
+  },
+  {
+    "node": "HumanApproval",
+    "run_id": "6237dd83-3d51-4cb4-a592-4cfa493e2c6c",
+    "company_id": "anthropic",
+    "approved": true
+  }
+]
