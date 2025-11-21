@@ -1,0 +1,9 @@
+google-cloud-storage
+requests
+httpx
+python-dotenv
+pydantic
+fastapi
+uvicorn
+pinecone-client
+openai

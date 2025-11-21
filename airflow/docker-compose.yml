@@ -1,0 +1,88 @@
+version: "3.8"
+
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.8.1-python3.11
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+  environment:
+    AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+    AIRFLOW__CORE__FERNET_KEY: ""
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+
+    # Make your repo importable
+    PYTHONPATH: "/opt/airflow:/opt/airflow/src:/opt/airflow/repo"
+
+    # MCP server running on Windows
+    MCP_BASE_URL: "http://host.docker.internal:9000"
+
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./requirements.txt:/opt/airflow/requirements.txt
+
+    # Mount your project code
+    - "C:/Users/kritt/GitHub_Local/pe_dashboard_ai_50/src:/opt/airflow/src"
+    - "C:/Users/kritt/GitHub_Local/pe_dashboard_ai_50:/opt/airflow/repo"
+
+    # Persistent Airflow DB
+    - ./airflow-db:/opt/airflow
+
+  user: "${AIRFLOW_UID:-50000}:0"
+
+  depends_on:
+    redis:
+      condition: service_healthy
+
+
+
+services:
+  redis:
+    image: redis:7
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install --no-cache-dir -r /opt/airflow/requirements.txt
+        airflow db init
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@example.com
+
+  webserver:
+    <<: *airflow-common
+    command: >
+      bash -c "pip install --no-cache-dir -r /opt/airflow/requirements.txt &&
+               airflow webserver"
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  scheduler:
+    <<: *airflow-common
+    command: >
+      bash -c "pip install --no-cache-dir -r /opt/airflow/requirements.txt &&
+               airflow scheduler"
+    healthcheck:
+      test: ["CMD", "airflow", "jobs", "check", "--job-type", "SchedulerJob", "--hostname", "scheduler"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
