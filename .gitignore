@@ -1,0 +1,133 @@
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+*.orig
+
+# Virtualenv
+venv/
+.venv/
+ENV/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ============================================================
+# Editor / IDE
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ============================================================
+# Logs
+# ============================================================
+*.log
+logs/
+react_logs/
+
+# ============================================================
+# Environment / Credentials
+# ============================================================
+.env
+.env.*
+.envrc
+*.key
+*.pem
+*.p12
+service_account.json
+gcp_credentials.json
+
+# ============================================================
+# Airflow / Composer
+# ============================================================
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/logs/
+airflow/plugins/__pycache__/
+dags/__pycache__/
+
+# Composer-generated
+dags/generated/
+dag_build/
+
+# ============================================================
+# Data (RAW + PARSED + GENERATED)
+# Keep ONLY seed files
+# ============================================================
+data/raw/
+data/parsed/
+data/docling/
+data/vector_index/
+data/structured/
+data/payloads/
+data/markdown/
+data/risk_logs/
+data/tmp/
+data/cache/
+!data/forbes_ai50_seed.json   # keep the seed list
+!data/sample_dashboard.md
+!data/starter_payload.json
+
+# ============================================================
+# Model Artifacts
+# ============================================================
+checkpoints/
+models/
+*.pt
+*.bin
+*.ckpt
+
+# ============================================================
+# MCP Server
+# ============================================================
+mcp_logs/
+mcp_cache/
+
+# Tools
+src/tools/__pycache__/
+
+# ============================================================
+# Dashboard Generation
+# ============================================================
+*.md
+generated_dashboards/
+
+# ============================================================
+# Testing
+# ============================================================
+.pytest_cache/
+coverage/
+htmlcov/
+*.cover
+
+# ============================================================
+# Docker
+# ============================================================
+docker-compose.override.yml
+docker-cache/
+.docker/
+*.tar
+
+# ============================================================
+# Node / JS (if using Streamlit components)
+# ============================================================
+node_modules/
+package-lock.json
+yarn.lock
+
+# Streamlit local state
+.streamlit/
+
+# ============================================================
+# Misc
+# ============================================================
+*.DS_Store
+Thumbs.db
