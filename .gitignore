@@ -99,6 +99,8 @@ src/tools/__pycache__/
 # ============================================================
 *.md
 generated_dashboards/
+# Track prompt templates used by dashboard generator
+!src/prompts/*.md
 
 # ============================================================
 # Testing
