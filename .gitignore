@@ -27,11 +27,21 @@ env/
 *.swo
 
 # ============================================================
-# Logs
+# Logs (root-level)
 # ============================================================
 *.log
 logs/
 react_logs/
+# Unignore the logs folder itself
+!logs/
+
+# Keep markdown logs inside logs/ folder (root-level)
+!logs/*.md
+
+# Ignore JSONL traces globally but keep the committed example
+*.jsonl
+!react_traces.jsonl
+
 
 # ============================================================
 # Environment / Credentials
@@ -72,7 +82,8 @@ data/markdown/
 data/risk_logs/
 data/tmp/
 data/cache/
-!data/forbes_ai50_seed.json   # keep the seed list
+
+!data/forbes_ai50_seed.json
 !data/sample_dashboard.md
 !data/starter_payload.json
 
@@ -97,9 +108,9 @@ src/tools/__pycache__/
 # ============================================================
 # Dashboard Generation
 # ============================================================
-*.md
 generated_dashboards/
-# Track prompt templates used by dashboard generator
+
+# Keep system prompts
 !src/prompts/*.md
 
 # ============================================================
@@ -119,7 +130,7 @@ docker-cache/
 *.tar
 
 # ============================================================
-# Node / JS (if using Streamlit components)
+# Node / JS (Streamlit components)
 # ============================================================
 node_modules/
 package-lock.json
